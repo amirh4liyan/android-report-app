@@ -8,7 +8,7 @@
     tools:context=".UpdateActivity">
 
     <TextView
-        android:id="@+id/dateLbl2"
+        android:id="@+id/current_date_lbl2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -34,7 +34,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateLbl2" />
+        app:layout_constraintTop_toBottomOf="@+id/current_date_lbl2" />
 
     <EditText
         android:id="@+id/lecture_ed2"
