@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Reports</string>
+    <string name="today_btn_txt">Today</string>
+    <string name="addReport_btn_txt">Add Report</string>
+    <string name="showReport_btn_txt">Show Report</string>
 </resources>
