@@ -13,20 +13,25 @@
         android:theme="@style/Theme.Material3.Dark"
         tools:targetApi="31">
         <activity
-            android:name=".ShowActivity"
-            android:label="Show Reports"
+            android:name=".UpdateActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:label="Edit Report"
+            android:parentActivityName=".ShowActivity"/>
+        <activity
+            android:name=".ShowActivity"
+            android:exported="true"
+            android:label="Show Reports"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddActivity"
-            android:label="Add Report"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:label="Add Report"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TodayActivity"
-            android:label="today's work"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:label="today's work"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
