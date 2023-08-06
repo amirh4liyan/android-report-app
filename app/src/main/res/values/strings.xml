@@ -16,4 +16,8 @@
     <string name="function_ed_hint">Function</string>
     <string name="add_btn_txt">Add</string>
 
+    <!--Show Activity-->
+    <string name="delete_btn_txt">Delete</string>
+    <string name="edit_btn_txt">Edit</string>
+
 </resources>
