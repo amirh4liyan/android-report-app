@@ -14,6 +14,6 @@
     <string name="duration_ed_hint">Duration</string>
     <string name="pages_ed_hint">Pages</string>
     <string name="function_ed_hint">Function</string>
-    <string name="add_btn_txt">Submit</string>
+    <string name="add_btn_txt">Add</string>
 
 </resources>
