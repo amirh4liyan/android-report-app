@@ -15,7 +15,7 @@
         android:padding="12dp">
 
         <TextView
-            android:id="@+id/id_txt"
+            android:id="@+id/id_lbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/date_txt"
+            android:id="@+id/date_lbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -34,11 +34,11 @@
             android:fontFamily="@font/iransans"
             android:text="10 مرداد"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/section_txt"
+            app:layout_constraintBottom_toTopOf="@+id/section_lbl"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/lecture_txt"
+            android:id="@+id/lecture_lbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -46,18 +46,18 @@
             android:text="Lecture 1"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/id_txt"
-            app:layout_constraintTop_toTopOf="@+id/id_txt" />
+            app:layout_constraintEnd_toStartOf="@+id/id_lbl"
+            app:layout_constraintTop_toTopOf="@+id/id_lbl" />
 
         <TextView
-            android:id="@+id/section_txt"
+            android:id="@+id/section_lbl"
             android:layout_width="316dp"
             android:layout_height="0dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/iransans"
             android:text="Section1"
-            app:layout_constraintEnd_toEndOf="@+id/lecture_txt"
-            app:layout_constraintTop_toBottomOf="@+id/lecture_txt" />
+            app:layout_constraintEnd_toEndOf="@+id/lecture_lbl"
+            app:layout_constraintTop_toBottomOf="@+id/lecture_lbl" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expandable_layout"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/section_txt"
+            app:layout_constraintTop_toBottomOf="@+id/section_lbl"
             tools:layout_editor_absoluteX="12dp">
 
             <Button
@@ -75,11 +75,11 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/iransans"
                 android:text="@string/edit_btn_txt"
-                app:layout_constraintEnd_toEndOf="@+id/function_txt"
-                app:layout_constraintTop_toBottomOf="@+id/function_txt" />
+                app:layout_constraintEnd_toEndOf="@+id/function_lbl"
+                app:layout_constraintTop_toBottomOf="@+id/function_lbl" />
 
             <TextView
-                android:id="@+id/source_txt"
+                android:id="@+id/source_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/iransans"
@@ -88,16 +88,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/duration_txt"
+                android:id="@+id/duration_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="1:30"
-                app:layout_constraintStart_toStartOf="@+id/pages_txt"
-                app:layout_constraintTop_toBottomOf="@+id/pages_txt" />
+                app:layout_constraintStart_toStartOf="@+id/pages_lbl"
+                app:layout_constraintTop_toBottomOf="@+id/pages_lbl" />
 
             <TextView
-                android:id="@+id/pages_txt"
+                android:id="@+id/pages_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1-7"
@@ -105,14 +105,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/function_txt"
+                android:id="@+id/function_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/iransans"
                 android:text="Function"
-                app:layout_constraintEnd_toEndOf="@+id/source_txt"
-                app:layout_constraintTop_toBottomOf="@+id/source_txt" />
+                app:layout_constraintEnd_toEndOf="@+id/source_lbl"
+                app:layout_constraintTop_toBottomOf="@+id/source_lbl" />
 
             <Button
                 android:id="@+id/delete_btn"

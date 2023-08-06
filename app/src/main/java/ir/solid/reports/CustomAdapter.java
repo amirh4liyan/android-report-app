@@ -39,14 +39,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         Details details = detailsList.get(position);
 
-        holder.id_txt.setText(details.getId());
-        holder.date_txt.setText(details.getJStyleDate());
-        holder.lecture_txt.setText(details.getLecture());
-        holder.section_txt.setText(details.getSection());
-        holder.source_txt.setText(details.getSource());
-        holder.duration_txt.setText(details.getDuration());
-        holder.pages_txt.setText(details.getPages());
-        holder.function_txt.setText(details.getFunction());
+        holder.id_lbl.setText(details.getId());
+        holder.date_lbl.setText(details.getJStyleDate());
+        holder.lecture_lbl.setText(details.getLecture());
+        holder.section_lbl.setText(details.getSection());
+        holder.source_lbl.setText(details.getSource());
+        holder.duration_lbl.setText(details.getDuration());
+        holder.pages_lbl.setText(details.getPages());
+        holder.function_lbl.setText(details.getFunction());
 
         boolean isExpandable = detailsList.get(position).isExpandable();
         holder.expandableLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
@@ -77,8 +77,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id_txt, date_txt, lecture_txt, section_txt, source_txt,
-                duration_txt, pages_txt, function_txt;
+        TextView id_lbl, date_lbl, lecture_lbl, section_lbl, source_lbl,
+                duration_lbl, pages_lbl, function_lbl;
 
         Button edit_btn, delete_btn;
 
@@ -86,14 +86,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            id_txt = itemView.findViewById(R.id.id_txt);
-            date_txt = itemView.findViewById(R.id.date_txt);
-            lecture_txt = itemView.findViewById(R.id.lecture_txt);
-            section_txt = itemView.findViewById(R.id.section_txt);
-            source_txt = itemView.findViewById(R.id.source_txt);
-            duration_txt = itemView.findViewById(R.id.duration_txt);
-            pages_txt = itemView.findViewById(R.id.pages_txt);
-            function_txt = itemView.findViewById(R.id.function_txt);
+            id_lbl = itemView.findViewById(R.id.id_lbl);
+            date_lbl = itemView.findViewById(R.id.date_lbl);
+            lecture_lbl = itemView.findViewById(R.id.lecture_lbl);
+            section_lbl = itemView.findViewById(R.id.section_lbl);
+            source_lbl = itemView.findViewById(R.id.source_lbl);
+            duration_lbl = itemView.findViewById(R.id.duration_lbl);
+            pages_lbl = itemView.findViewById(R.id.pages_lbl);
+            function_lbl = itemView.findViewById(R.id.function_lbl);
 
             edit_btn = itemView.findViewById(R.id.edit_btn);
             delete_btn = itemView.findViewById(R.id.delete_btn);
