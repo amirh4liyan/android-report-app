@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">Reports</string>
+
+    <!--Main Activity-->
     <string name="today_btn_txt">Today</string>
     <string name="addReport_btn_txt">Add Report</string>
     <string name="showReport_btn_txt">Show Reports</string>
+
+    <!--Add Activity-->
+    <string name="date_ed_hint">Date</string>
+    <string name="lecture_ed_hint">Lecture</string>
+    <string name="section_ed_hint">Section</string>
+    <string name="source_ed_hint">Source</string>
+    <string name="duration_ed_hint">Duration</string>
+    <string name="pages_ed_hint">Pages</string>
+    <string name="function_ed_hint">Function</string>
+    <string name="add_btn_txt">Submit</string>
+
 </resources>
