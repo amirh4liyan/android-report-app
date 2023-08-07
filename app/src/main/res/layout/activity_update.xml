@@ -90,7 +90,7 @@
         android:gravity="center"
         android:hint="@string/duration_ed_hint"
         android:fontFamily="@font/iransans_light"
-        android:inputType="time"
+        android:inputType="time|date"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
