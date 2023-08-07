@@ -64,6 +64,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/iransans"
                 android:text="@string/edit_btn_txt"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 app:layout_constraintEnd_toEndOf="@+id/function_lbl2"
                 app:layout_constraintTop_toBottomOf="@+id/function_lbl2" />
 
@@ -109,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/iransans"
                 android:text="@string/delete_btn_txt"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/edit_btn2" />
 
