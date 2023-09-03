@@ -65,7 +65,7 @@ public class JCal {
         switch (month) {
             case "Apr":
             case "Jun":
-            case "Sept":
+            case "Sep":
             case "Nov":
                 return 30;
 
@@ -81,7 +81,7 @@ public class JCal {
         int ans = 0;
         String[] monthNames = {
                 "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
         };
 
         int index = 0;
