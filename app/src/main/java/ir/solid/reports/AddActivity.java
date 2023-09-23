@@ -35,7 +35,7 @@ public class AddActivity extends AppCompatActivity {
 
             String date;
             if (date_ed.getText().toString().equals(""))
-                date = jcal.get_DB_StyleJDate();
+                date = jcal.getCurrentJDate();
             else
                 date = date_ed.getText().toString();
 

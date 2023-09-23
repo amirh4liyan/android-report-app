@@ -1,56 +1,65 @@
 package ir.solid.reports;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class JCal {
 
-    /* 1 June 2023  ≡  11 Khoordad 1402
+    /*     1 January 2023  ≡  11 Dey 1401
        this class convert find JCal date using gregory date
        first it determine current gregory calendar date and
-       find difference between base date (1 June 2023) and current date then,
-       it will count same day difference between JCal base Date (11 Khordad 1402)
+       find difference between base date (1 January 2023) and current date then,
+       it will count same day difference between JCal base Date (11 Dey 1401)
        and return JCal current date
      */
+    private final Date cal = Calendar.getInstance().getTime();
 
-    private Date cal = Calendar.getInstance().getTime();
+    private int currentYear;
+    private String currentMonth;
+    private int currentDay;
 
-    private final String baseMonth = "Jun";
-    private final int baseDay = 1;
+    private int dayDiff;
 
-    static String currentMonth = "";
-    static int currentDay = 0;
-
-    static int dayDiff;
+    String[] monthNames = {
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
 
     public JCal() {
         // Determine Current Date
+        setCurrentYear();
         setCurrentMonth();
         setCurrentDay();
-
-        dayDiff = calcDayDiff(currentMonth, currentDay);
+        calcDayDiff(currentYear, currentMonth, currentDay);
     }
 
-    // [DONE]
     public String getJDate() {
-        return JDay(dayDiff) + " " + JMonthName(JMonth(dayDiff));
-    }
-
-    public String get_DB_StyleJDate() {
-        int m = JMonth(dayDiff);
-        int d = JDay(dayDiff);
-        return String.format("%d-%d", m, d);
+        String date = getCurrentJDate();
+        int first = date.indexOf("-");
+        int last = date.lastIndexOf("-");
+        int year = Integer.parseInt(date.substring(0, first));
+        int month = Integer.parseInt(date.substring(first+1, last));
+        int day = Integer.parseInt(date.substring(last+1));
+        return day + " " + JMonthName(month) + " " + year;
     }
 
     public String convert_DB_ToJDate(String date) {
-        int end = date.indexOf("-");
-        int month = Integer.parseInt(date.substring(0, end));
-        int day = Integer.parseInt(date.substring(end+1));
-        return day + " " + JMonthName(month);
+        int first = date.indexOf("-");
+        int last = date.lastIndexOf("-");
+        int year = Integer.parseInt(date.substring(0, first));
+        int month = Integer.parseInt(date.substring(first+1, last));
+        int day = Integer.parseInt(date.substring(last+1));
+        return day + " " + JMonthName(month) + " " + year;
     }
 
+    private void setCurrentYear() {
+        SimpleDateFormat yf = new SimpleDateFormat("yyyy", Locale.getDefault());
+        currentYear = Integer.parseInt(yf.format(cal));
+    }
     private void setCurrentMonth() {
         SimpleDateFormat mf = new SimpleDateFormat("MMM", Locale.getDefault());
         currentMonth = mf.format(cal);
@@ -60,8 +69,7 @@ public class JCal {
         currentDay = Integer.parseInt(df.format(cal));
     }
 
-    // [DONE]
-    private static int getMonthDays(String month) {
+    private int getMonthDays(String month, int year) {
         switch (month) {
             case "Apr":
             case "Jun":
@@ -70,73 +78,84 @@ public class JCal {
                 return 30;
 
             case "Feb":
-                return 28;
+                if (isFeb29days(year))
+                    return 29;
+                else
+                    return 28;
 
             default:
                 return 31;
         }
     }
 
-    private int calcDayDiff(String month, int day) {
+    private void calcDayDiff(int year, String month, int day) {
         int ans = 0;
-        String[] monthNames = {
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        };
 
-        int index = 0;
-        for (int i=0; i < 12; i++)
-            if (month.equals(monthNames[i]))
-                index = i;
+        // Day for Years
+        int baseYear = 2023;
+        int yDiff = year - baseYear;
+        ans += yDiff * 365;
+        for (int i = baseYear; i < year; i++)
+            if (isFeb29days(i))
+                ans += 1;
 
-        // index of month btw 12 available month
-        int baseIndex = 5;
-        if (index == baseIndex) {
-            ans = day-baseDay;
-        } else if (index > baseIndex) {
+        // Day for Months
+        int index = Arrays.asList(monthNames).indexOf(month);
+        int baseMonthIndex = 0;
+        int baseDay = 1;
+        if (index == baseMonthIndex) {
+            // passed days of current month
+            ans = day - baseDay;
+        } else if (index > baseMonthIndex) {
             // add Full months days
-            for (int i = baseIndex; i < index; i++)
-                ans += getMonthDays(monthNames[i]);
-            // passed days of given month
-            ans += day;
-            // ans -1 --> for calculate days btw base and given date
-            ans -= 1;
-        } else {
-            // add Full months days
-            for (int i = baseIndex -1; i > index; i--)
-                ans += getMonthDays(monthNames[i]);
-            // Remained days of given month
-            int monthDays = getMonthDays(month);
-            int remainedDaysFromMonth = monthDays-day;
-            ans += remainedDaysFromMonth;
+            for (int i = baseMonthIndex; i < index; i++)
+                ans += getMonthDays(monthNames[i], year);
+
+            // Day for Days
+            // passed days of current month
+            ans += day - baseDay;
         }
-        return ans;
+        setDayDiff(ans);
     }
 
-    private int JMonth(int dayDiff) {
-        int code = 0;
-        int q = dayDiff / 114;
-        if (q == 0) {
-            int monthDiff = (dayDiff+11) / 31;
-            code = monthDiff +3;
-        } else {
-            dayDiff -= 113;
-            int monthDiff = (dayDiff+11) / 30;
-            code = monthDiff +3 +3;
-        }
-        return code;
+    private int getJMonthDays(int month, int year) {
+        if (month > 0 && month < 13)
+            if (month < 7)
+                return 31;
+            else if (month < 12)
+                return 30;
+            else
+            if (isKabiseh(year))
+                return 30;
+            else
+                return 29;
+        else
+            return -1;
     }
 
-    private int JDay (int dayDiff) {
-        int d = 0;
-        int q = dayDiff / 114;
-        if (q == 0) {
-            d = (dayDiff+11) % 31;
+    private String JDate(int dayDiff) {
+        int year = 1401;
+        int month = 10;
+        int day;
+
+        if (dayDiff <= 19) {
+            day = dayDiff + 11;
         } else {
-            dayDiff -= 113;
-            d = dayDiff % 30;
+            dayDiff -= 19;
+            month++;
+            // now it can be calculated from 1 bahman 1401
+            while (dayDiff > getJMonthDays(month, year)) {
+                dayDiff -= getJMonthDays(month, year);
+
+                month++;
+                if (month > 12) {
+                    month = 1;
+                    year++;
+                }
+            }
+            day = dayDiff;
         }
-        return d;
+        return String.format("%d-%d-%d", year, month, day);
     }
 
     // [DONE]
@@ -169,16 +188,29 @@ public class JCal {
         }
     }
 
+    public String getCurrentJDate() {
+        return JDate(getDayDiff());
+    }
+
+    private void setDayDiff(int dayDiff) {
+        this.dayDiff = dayDiff;
+    }
+    private int getDayDiff() {
+        return this.dayDiff;
+    }
+
+    public boolean isFeb29days(int year) {
+        return year % 4 == 0;
+    }
+
+    public boolean isKabiseh(int year) {
+        List<Integer> list = Arrays.asList(1, 5, 9, 13, 17, 22, 26, 30);
+        return list.contains(year % 33);
+    }
+
     private String backwardDate(int n) {
-        int month = JMonth(dayDiff);
-        int day = JDay(dayDiff)-n;
-        while (day < 1) {
-            month -= 1;
-            day += 30;
-            if (month < 7)
-                day += 1;
-        }
-        return String.format("%d-%d", month, day);
+        int dayDiff = getDayDiff()-n;
+        return JDate(dayDiff);
     }
 
     public String _1day_ago() {
